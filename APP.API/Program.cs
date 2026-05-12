@@ -17,6 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddMemberClient(builder.Configuration);
+builder.Services.AddRestaurantClient(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
@@ -85,7 +86,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate(); // ¡ö ¦Û°Ê°õ¦æ©Ò¦³¥¼®M¥Îªº Migration
+    db.Database.Migrate(); // ï¿½ï¿½ ï¿½Û°Ê°ï¿½ï¿½ï¿½Ò¦ï¿½ï¿½ï¿½ï¿½Mï¿½Îªï¿½ Migration
 }
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

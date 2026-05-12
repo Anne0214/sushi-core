@@ -15,6 +15,7 @@ namespace ApiGateway.Application.Dependency
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<ILoginUseCase, LoginUseCase>();
+            services.AddScoped<IGetRestaurantListUseCase, GetRestaurantListUseCase>();
             services.AddScoped<JwtUtil>();
             services.AddScoped<RefreshTokenUtil>();
             services.AddScoped<SessionIdUtil>();
