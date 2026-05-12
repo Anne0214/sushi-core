@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Member.API.Models.Dto
+﻿namespace Member.API.Models.Dto
 {
-    public class CheckAccountAndPwdRequest
+    public record CheckAccountAndPwdRequest
     {
-        public string Account { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-
-
+        public string Account { get; init; } = string.Empty;
+        public string Password { get; init; } = string.Empty;
     }
 }

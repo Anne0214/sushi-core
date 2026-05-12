@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+using Restaurant.API.Models.Dto;
 
 namespace Restaurant.API.Controllers
 {
@@ -24,7 +24,4 @@ namespace Restaurant.API.Controllers
             return Ok(new RestaurantListResponse(list));
         }
     }
-
-    public record RestaurantItem(long RestaurantId, string Name);
-    public record RestaurantListResponse(List<RestaurantItem> RestaurantList);
 }
