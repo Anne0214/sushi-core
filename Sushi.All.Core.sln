@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APP.API.Tests", "APP.API.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Member.API", "Member.API\Member.API.csproj", "{F73E2547-20E3-4B10-9A40-E7318DF878B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sushi.All.Infrastructure.Web", "Sushi.All.Infrastructure.Web\Sushi.All.Infrastructure.Web.csproj", "{0A630462-589E-4120-BD03-2D198423B0B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{F73E2547-20E3-4B10-9A40-E7318DF878B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F73E2547-20E3-4B10-9A40-E7318DF878B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F73E2547-20E3-4B10-9A40-E7318DF878B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A630462-589E-4120-BD03-2D198423B0B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A630462-589E-4120-BD03-2D198423B0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A630462-589E-4120-BD03-2D198423B0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A630462-589E-4120-BD03-2D198423B0B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +148,7 @@ Global
 		{20D24DCD-25B4-1EE5-47FA-3B31ED1A534E} = {596C2547-F651-4875-AB91-33CFC2DF1A3F}
 		{01664782-6937-486A-9FAE-552DF86881CE} = {878E74D0-C777-4FBE-AD75-E0CCCD6246ED}
 		{F73E2547-20E3-4B10-9A40-E7318DF878B4} = {7E18C957-52F5-4B46-89FC-4570E3326009}
+		{0A630462-589E-4120-BD03-2D198423B0B9} = {8F645125-0D4C-486D-AB6C-13C3F7814C51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4876E566-0766-4364-A6D4-5FC07917E142}

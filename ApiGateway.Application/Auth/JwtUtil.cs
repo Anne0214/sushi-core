@@ -52,13 +52,15 @@ namespace ApiGateway.Application.Auth
         public ClaimsPrincipal ValidateToken(string token, string validIssuer)
         {
             var handler = new JwtSecurityTokenHandler();
+            var key = _keyStore.GetKey("JwtKey");
+
             var validationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
                 ValidIssuer = validIssuer,
                 ValidateAudience = false,
                 ValidateLifetime = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("JttfUNWwAPBa84ByQf/1aJyGcP6Y3hyj0CLlLhhWczA=")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
                 ValidateIssuerSigningKey = true,
                 ClockSkew = TimeSpan.Zero // Optional: Set clock skew to zero for testing purposes
             };

@@ -16,7 +16,6 @@ namespace ApiGateway.Infrastructure.Client
         public MemberHttpClient(HttpClient client)
         {
             _httpClient = client;
-            Console.WriteLine("BaseAddress: " + client.BaseAddress);
         }
 
         public async Task<long> CheckAccountAndPwd(CheckAccountAndPwdRequestDto request)
