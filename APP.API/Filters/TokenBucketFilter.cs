@@ -22,13 +22,14 @@ namespace APP.API.Filters
 
             var userIdStr = context.HttpContext.User.FindFirst("userId")?.Value??"";
 
-            if (long.TryParse(userIdStr, out long userId))
+            if (!long.TryParse(userIdStr, out long userId))
             {
                 context.Result = new ContentResult
                 {
                     Content = "Unauthorized",
                     StatusCode = 401
                 };
+                return;
             }
 
             var policy = new RateLimitPolicy(

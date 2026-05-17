@@ -1,0 +1,54 @@
+name: Build and Deploy to AWS ECS
+ 
+on:
+  push:
+    branches: [ main ]
+ 
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-northeast-1.amazonaws.com
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+ 
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+ 
+      - name: Build and Push member-api
+        run: |
+          docker build -t $ECR_REGISTRY/sushi-member-api:latest -f Member.API/Dockerfile .
+          docker push $ECR_REGISTRY/sushi-member-api:latest
+ 
+      - name: Build and Push restaurant-api
+        run: |
+          docker build -t $ECR_REGISTRY/sushi-restaurant-api:latest -f Restaurant.API/Dockerfile .
+          docker push $ECR_REGISTRY/sushi-restaurant-api:latest
+ 
+      - name: Build and Push reservation-api
+        run: |
+          docker build -t $ECR_REGISTRY/sushi-reservation-api:latest -f Reservation.API/Dockerfile .
+          docker push $ECR_REGISTRY/sushi-reservation-api:latest
+ 
+      - name: Build and Push app-api
+        run: |
+          docker build -t $ECR_REGISTRY/sushi-app-api:latest -f APP.API/Dockerfile .
+          docker push $ECR_REGISTRY/sushi-app-api:latest
+ 
+      - name: Deploy all services to ECS
+        run: |
+          aws ecs update-service --cluster sushi-cluster --service sushi-member-service --force-new-deployment
+          aws ecs update-service --cluster sushi-cluster --service sushi-restaurant-service --force-new-deployment
+          aws ecs update-service --cluster sushi-cluster --service sushi-reservation-service --force-new-deployment
+          aws ecs update-service --cluster sushi-cluster --service sushi-app-service --force-new-deployment

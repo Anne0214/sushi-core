@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(powershell -ExecutionPolicy Bypass -File \"$env:USERPROFILE\\\\.claude\\\\notify.ps1\")"
+    ]
+  }
+}
