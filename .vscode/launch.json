@@ -1,0 +1,57 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Member.API",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/Member.API/Member.API.csproj",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5131"
+      }
+    },
+    {
+      "name": "Restaurant.API",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/Restaurant.API/Restaurant.API.csproj",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5049"
+      }
+    },
+    {
+      "name": "Reservation.API",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/Reservation.API/Reservation.API.csproj",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5008"
+      }
+    },
+    {
+      "name": "APP.API (Gateway)",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/APP.API/APP.API.csproj",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5053"
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "All Services",
+      "configurations": [
+        "Member.API",
+        "Restaurant.API",
+        "Reservation.API",
+        "APP.API (Gateway)"
+      ],
+      "stopAll": true
+    }
+  ]
+}
