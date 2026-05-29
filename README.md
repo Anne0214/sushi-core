@@ -174,27 +174,6 @@ graph LR
 
 ---
 
-## Database Schema Design / 資料庫設計決策
-
-### Auth_RefreshToken 設計決策
-
-| 設計 | 原因 | 取捨考量 |
-|------|------|----------|
-| `HashedToken` Unique Index | 防止 hash 碰撞造成誤判；快速查找 token 合法性（O(log n)） | 寫入時增加 index 維護成本，以安全性換效能 |
-| `FamilyId` 欄位 | 追蹤同一 Rotation 家族的所有 token，偵測到 theft 時可一次撤銷整個家族 | 需額外欄位與 JOIN，以安全性換查詢複雜度 |
-| `ParentId` 欄位 | 建立鏈式撤銷（Cascading Revocation）結構，可完整追溯 token 使用鏈 | 需控制遞迴查詢深度，避免無限追溯 |
-| `Version` Concurrency Token | 實作樂觀鎖，防止高並行下多個請求同時 Rotate 同一個 token | 避免使用悲觀鎖，減少資料庫鎖定競爭 |
-
-### Migration 歷史
-
-| Migration | 變更 | 技術決策原因 |
-|-----------|------|-------------|
-| `InitialCreate` | 建立初始 Auth_RefreshToken 表，UserId 為 `int` | 初期設計 |
-| `Fix_DefaultValue_ToSql` | IssuedAt 預設值改為 SQL `GETUTCDATE()` | 確保時間由資料庫統一生成，避免 App Server 時區不一致 |
-| `20251221edit` | `UserId int → bigint`；`HashedToken CHAR(64) → nvarchar(64)` | **bigint**：預估百萬級用戶，提前遷移成本遠低於上線後；**nvarchar**：CHAR 在 SQL Server 預設 Collation 下大小寫不敏感，導致 hash 查找誤判，改 nvarchar 確保 case-sensitive 比對 |
-
----
-
 ## 專案結構
 
 ```
